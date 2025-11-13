@@ -41,6 +41,17 @@ CREATE TABLE prompts (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ------------------------------------------------------------
+-- Tabela: tabela_prompts
+-- ------------------------------------------------------------
+CREATE TABLE tabela_prompts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  tabela_id INT NOT NULL,
+  prompt_id INT NOT NULL,
+  FOREIGN KEY (tabela_id) REFERENCES tabelas_bingo(id) ON DELETE CASCADE,
+  FOREIGN KEY (prompt_id) REFERENCES prompts(id) ON DELETE CASCADE
+);
+
+-- ------------------------------------------------------------
 -- Tabela: cartelas
 -- ------------------------------------------------------------
 CREATE TABLE cartelas (

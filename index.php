@@ -15,12 +15,12 @@ require_once "./database/database.php";
 }
 
 echo "<br>";echo "<br>";
+*/
 
 $database = new Database(); 
-//var_dump($database->create("usuarios", ["username" => "mene", "senha" => md5("12345")]));
+//var_dump($database->create("usuarios", ["username" => "admin", "senha" => md5("12345")]));
 //var_dump($database->read("usuarios", ["username" => "mene"]));
 //var_dump ($database->update("usuarios", ["username" => "menegati"] , ["username" => "mene"]));
 //var_dump($database->delete("usuarios",["username"=> 'menetots']));
-*/
 
 header("Location: /pages/menu.php");

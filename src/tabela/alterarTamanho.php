@@ -21,6 +21,10 @@ try{
         $database = new Database();
         $result = $database->update('tabelas_bingo', ['tamanho'=> $novoTamanho], ['id'=>$tabela_id]);
 
+        //aqui e so pra limpar as cartelas pois se a quantide de cartelas ja criadas for maior que o tamanho atualizado, a tabela fica zoada
+        $database->delete('cartelas', ['tabela_id' => $tabela_id]);
+
+
         if(!$result['success']){
             throw new Exception($result['message']);
         }

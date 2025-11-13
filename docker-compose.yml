@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql_bingo:
+    image: mysql:8.0
+    container_name: mysql_bingo
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: bingo_db
+      MYSQL_USER: bingo_user
+      MYSQL_PASSWORD: bingo123
+    ports:
+      - '3308:3306'
+    volumes:
+      - mysql_bingo_data:/var/lib/mysql
+    networks:
+      - bingo_network
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin_bingo:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_bingo
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql_bingo
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    ports:
+      - '8081:80'
+    depends_on:
+      - mysql_bingo
+    networks:
+      - bingo_network
+
+volumes:
+  mysql_bingo_data:
+    driver: local
+
+networks:
+  bingo_network:
+    driver: bridge
